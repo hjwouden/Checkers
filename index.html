@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>How to Play Checkers</title>
+            <link href="style.css" rel="stylesheet" type="text/css" />
+        </head>
+        
+        <body>
+            <div class = "header">
+                <h1>How to Play Checkers</h1>
+            </div>
+             <p id="caption">img from: www.woodexpressions.com </p>
+            <p><a href = "Main.html" target="_blank">Go To Game Board</a></p>
+            
+               
+                <img id="wood" src="woodBoard.jpg" alt="Wood Checker Board" >
+                
+            <h2>How to Play</h2>
+                <ul>
+                    <li>Select if playing 1 player or 2 players.</li>
+                    <li>Click one of your teams pieces, then on the spot you want to move it to.</li>
+                    <li>Jump over the other teams pieces to remove them from the board.</li>
+                    <li>Win by removing all of the other teams pieces!</li>
+                </ul>
+            
+            <h2>Rules</h2>
+                <ol>
+                    <li>Gameboard is a 8x8 table, alternating white and black squares.</li>
+                    <li>Each Team has 12 pieces. Pieces stay on black squares at all times. </li>
+                    <li>Players move their teams pieces one square at a time diagonally.</li>
+                    <li>After one move it is the other players turn to move.</li>
+                    <li>Pieces must be moved forward in all moves, unless piece is a king.</li>
+                    <li>A piece becomes a king by reaching the furthest row of the opponents
+                    side</li>
+                    <li>A jump happens when a piece "Jumps" over an opponents piece to get
+                    to an open square to get to the open square behind it.</li>
+                    <li>When a jump is available, the player must jump.</li>
+                    <li>The winner is the player who has caputured all the pieces of the
+                    opposing team</li>
+                </ol>
+            
+            <h2>External Link</h2>
+            <p><a href = "http://www.indepthinfo.com/checkers/history.shtml" target="_blank">Learn About
+                Checkers History</a></p>
+            
+             <p></p>
+             
+             <h2>Preliminary Software Design</h2>
+                <p>Variables</p>
+                <ul>
+                    <li>Num_Players = (1 or 2)</li>
+                    <li>Board Squares = White or Black (WhiteSq, BlackSq)</li>
+                    <li>Pieces = White_Team, Red_Team(RdPc, WtPc)</li>
+                    <li>PieceValues = Normal, King (RdPc, WtPc, RdPcKing, WtPcKing)</li>
+                    <li>StartingPieces = 12</li>
+                    <li>BoardStatus[8][8] //an 8x8 grid that is the layout of the board game, can use to check where each teams pieces are, and legal moves</li>
+                    <li>will need to also make items that will use 2d array to show possible moves for every position on the game board, algorithm if move position
+                    contains piece of opposite team and move is available from that position then player has ability to jump that player.</li>
+                </ul>
+                <h3>Description of how to play.</h3>
+                <p>Player will make move by clicking on a piece and moving it to a legal spot on the board.
+                    Moving to white square will not be allowed, only able to click on black squares.
+                    Position on board will be kept by grid number system.(2d array of ints) When object is clicked, square
+                    is sent to first function that will make sure it contains a piece of that players
+                    team. 
+                </p>
+                <h3>Functions/Methods</h3>
+                <ul>
+                    <li>CheckPiece(position) //if CheckPiece returns true, allow player to select the square with a piece as the one to move</li>
+                    <li>CheckSquareEmpty(position) //check to see if 2nd click is an empty square, then check if the move is legal.</li>
+                    <li>CheckMove(position1,position2) //if CheckMove returns true, move is legal and game board is updated with move on HTML table</li>
+                    <li>UpdateBoard() // will update the HTML gameboard with current moves</li>
+                    <li>NewGame() // will prompt if sure want to start a new game, then set board to default settings.</li>
+                    <li>CheckWinner() //after each move check to see if either team has 0 pieces left, if no pieces left then declare a winner!</li>
+                </ul>     
+        </body>
+    </html>
