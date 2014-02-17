@@ -1,9 +1,12 @@
 var BLACKorWHITE = 1;
     
+var SqNum = 0;
+
     function tableCreate(TblHeight,TblWidth)
     {
         var body=document.getElementsByTagName('body')[0];
         var tbl=document.createElement('table');
+        tbl.id = "gameboard";
         var tbdy=document.createElement('tbody');
         
         for(var i=0;i<TblHeight;i++)
@@ -16,7 +19,8 @@ var BLACKorWHITE = 1;
                     if (BLACKorWHITE == 0)
                     {
                         var td=document.createElement('td');
-                        td.id="white";
+                        td.id=SqNum++;
+                        td.className="white";
                         tr.appendChild(td)
                         BLACKorWHITE = 1;
                     }
@@ -24,15 +28,18 @@ var BLACKorWHITE = 1;
                     {
                         var td=document.createElement('td');
                         if (i <= 2) {
-                            td.id="black";
+                            td.id=SqNum++;
+                            td.className="black";
                         }
                         else if (i >= 5) {
 
-                            td.id = "black";
+                            td.id = SqNum++;
+                            td.className="black";
                         }
                         else
                         {
-                            td.id = "black";
+                            td.id = SqNum++;
+                            td.className="black";
                         }
                         tr.appendChild(td)
                         BLACKorWHITE = 0;
@@ -44,14 +51,17 @@ var BLACKorWHITE = 1;
                     {
                         var td=document.createElement('td');
                         if (i <= 2) {
-                            td.id = "black";
+                            td.id = SqNum++;
+                            td.className="black";
                         }
                         else if (i >= 5) {
-                            td.id = "black";
+                            td.id = SqNum++;
+                            td.className="black";
                         }
                         else
                         {
-                            td.id = "black";
+                            td.id = SqNum++;
+                            td.className="black";
                         }
                         tr.appendChild(td)
                         BLACKorWHITE = 1;
@@ -59,7 +69,8 @@ var BLACKorWHITE = 1;
                     else
                     {
                         var td=document.createElement('td');
-                       td.id = "white";
+                       td.id = SqNum++;
+                       td.className="white";
                         tr.appendChild(td)
                         BLACKorWHITE = 0;
                     }       
@@ -70,4 +81,4 @@ var BLACKorWHITE = 1;
         tbl.appendChild(tbdy);
         body.appendChild(tbl)
     }
-document.getElementById("testing").innerHTML= tableCreate(8,8);
+document.createElement = tableCreate(8,8);
