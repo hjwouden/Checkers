@@ -1,3 +1,8 @@
+//was for assignment1. not using this anymore
+//comment out just to make sure
+/*
+
+
 var BLACKorWHITE = 1;
     
     function tableCreate(TblHeight,TblWidth)
@@ -104,3 +109,5 @@ var BLACKorWHITE = 1;
         body.appendChild(tbl)
     }
     document.getElementById("testing").innerHTML= tableCreate(8,8);
+    
+    */

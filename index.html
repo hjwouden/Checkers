@@ -45,18 +45,46 @@
             
              <p></p>
              
-             <h2>Preliminary Software Design</h2>
-                <p>Variables</p>
+             <h2>UPDATED: Preliminary Software Design</h2>
+                <h3>Variables</h3>
+                <p>//Integer values used in arrays / (validate move)<br>
+                //0 = White Space, (Invalid Move)(emptyspace)<br>
+                //1 = Red Piece, (Valid Move)<br>
+                //3 = Red Piece King<br>
+                //2 = White Piece<br>
+                //4 = White Piece King</p>
                 <ul>
                     <li>Num_Players = (1 or 2)</li>
-                    <li>Board Squares = White or Black (WhiteSq, BlackSq)</li>
-                    <li>Pieces = White_Team, Red_Team(RdPc, WtPc)</li>
-                    <li>PieceValues = Normal, King (RdPc, WtPc, RdPcKing, WtPcKing)</li>
-                    <li>StartingPieces = 12</li>
-                    <li>BoardStatus[8][8] //an 8x8 grid that is the layout of the board game, can use to check where each teams pieces are, and legal moves</li>
-                    <li>will need to also make items that will use 2d array to show possible moves for every position on the game board, algorithm if move position
-                    contains piece of opposite team and move is available from that position then player has ability to jump that player.</li>
+                    <li>UPDATED: gameboard and valid moves will be single arrays, size 64. holding values represented as above. will use loops to check values in the tables to see when moves or valid or to draw the current game map out</li>
+                    <li>StartBoard = <br>
+                 [0,1,0,1,0,1,0,1, <br>
+                  1,0,1,0,1,0,1,0, <br>
+                  0,1,0,1,0,1,0,1,<br>
+                  0,0,0,0,0,0,0,0,<br>
+                  0,0,0,0,0,0,0,0,<br>
+                  2,0,2,0,2,0,2,0,<br>
+                  0,2,0,2,0,2,0,2,<br>
+                  2,0,2,0,2,0,2,0];</li>
+                    <li>VaildMove[]; //similar array as above, mapped to show all valid moves player can make, function validate move will check this with the move player is making to see if player will be allowed to make the move</li>
+                    <li>CurrentGame[]; //similar as above, current game layout, updated after each move.</li>
+                    <li>function newGame() { //sets gameboard up for a new game. pieces in default positions, need prompt to ask if sure you want to start a new game (progress will be lost) } </li>
+                    <li>function UpdateMove() { //1.validateMove(from, to, currentgame); 2.updateGameArray(from, to); 3.updateview(currentgame); } </li>
+                    <li>function validateMove(from, to, currentgame) { if move from -> to is valid, does not hit any other pieces, then return true}</li>
+                    <li>function updateGameArray(from, to) {if validateMove was true, then make changes to game array. replace # piece with 0 and put piece on 0}</li>
+                    <li>drawcurrentBoard(currentgame) { //takes a game board array and will draw out the pieces accordaing to the 0-4 model above. }</li>
                 </ul>
+                <h3>CSS Class Names</h3>
+                <p>changes to game board made throught attribute class name of object. style sheet checking</p>
+                <ul>
+                    <li>redPC = red Piece Square</li>
+                    <li>whitePC = white piece square</li>
+                    <li>redPCKing</li>
+                    <li>whitePCKing</li>
+                    <li>black = empty black square</li>
+                    <li>white = empty white square, not valid move ever</li>
+                </ul>
+                
+                
                 <h3>Description of how to play.</h3>
                 <p>Player will make move by clicking on a piece and moving it to a legal spot on the board.
                     Moving to white square will not be allowed, only able to click on black squares.

@@ -7,6 +7,9 @@
 //2 = White Piece
 //4 = White Piece King
 
+var Num_Players; //1 or 2 player game
+
+
 var black = 1;
 var red = 2;
 var board;
