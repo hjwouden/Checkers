@@ -13,6 +13,8 @@ var Num_Players; //1 or 2 player game
 var black = 1;
 var red = 2;
 var board;
+var PieceHighlighted = 0; // if a piece is highlighted will be 1, else 0 meaning nothing is selected;
+var HighlightedPieceNum = -1; // the number of the piece that is highlighted, so we can refer back to it, -1 when no piece is selected;
 
 
 //Array that is the layout of Starting Game
@@ -57,14 +59,44 @@ var CurrentGame = [0,1,0,1,0,1,0,1,
                    0,2,0,2,0,2,0,2,
                    2,0,2,0,2,0,2,0];
 
+//Game Board for Outnumbered Variation
+var outNumberedBoard = [0,1,0,1,0,1,0,1,
+                        1,0,1,0,1,0,1,0,
+                        0,1,0,1,0,1,0,1,
+                        0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,
+                        0,2,0,2,0,2,0,2,
+                        2,0,2,0,2,0,2,0];
+
+//Game Board for Kings Battle Variation
+var KingsBattleBoard = [0,3,0,3,0,3,0,3,
+                        3,0,3,0,3,0,3,0,
+                        0,3,0,3,0,3,0,3,
+                        0,0,0,0,0,0,0,0,
+                        0,0,0,0,0,0,0,0,
+                        4,0,4,0,4,0,4,0,
+                        0,4,0,4,0,4,0,4,
+                        4,0,4,0,4,0,4,0];
+
+
+//during testing using sample game state
 
 
 var gameboard = document.getElementById("gameboard");
-newGame();
+//newGame();
 drawCurrentGameBoard(SampleGameState);
+AnimateTitle();
 
+CurrentGame = SampleGameState;
 //function draws the starting Gameboard
 function newGame(){
+    var GameType = document.getElementById("gameType");
+    var TypeVal = GameType.options[GameType.selectedIndex].value;
+    //alert(TypeVal);
+    
+    if (TypeVal == "0") {
+        //normal game board
     var k = 0;
     for(var i = 0; i<8; i++){
         for(var j = 0; j<8; j++){
@@ -78,6 +110,19 @@ function newGame(){
             k++;    
         }
     }
+    CurrentGame = StartBoard;
+    
+    }//end if TypeVal == 0 normal game board
+    else if (TypeVal == "1") {
+        //outnumbered game board
+        drawCurrentGameBoard(outNumberedBoard);
+        CurrentGame = outNumberedBoard;
+    }//end if TypeVal == 1 outnumbered battle
+    else if (TypeVal == "2") {
+        //Kings Battle Game board
+        drawCurrentGameBoard(KingsBattleBoard);
+        CurrentGame = KingsBattleBoard;
+    }//end if TypeVal == 2 kings battle
 }
 
 function UpdateMove(){
@@ -139,3 +184,94 @@ function validateMove(from, to, currentgame){
     //if no problems and move is good return true.
 }
 
+
+
+//adding event handlers to table cells
+var cells = document.getElementsByTagName("td");
+var i = 0;
+for(i = 0; i<64; i++)
+{
+   cells[i].onclick = function() {
+    var col = this.cellIndex;
+    var row = this.parentNode.rowIndex;
+    //var cell = gameboard.rows[row].cells[col];
+    //alert("" + row + col);
+    //cell.className="clickedwhitePC";
+    squareClicked(row, col);
+   }
+} 
+
+function squareClicked(row, col){
+    var converted = (row * 8) + col;
+
+    if (PieceHighlighted == 1) {
+        //A piece is already selected, see if clicking on a move square or highlight new piece
+        drawCurrentGameBoard(CurrentGame);
+    }
+    if (ValidMove[converted] == 0) {
+        //invalid move, do nothing
+    //    alert("clicked white square = " + converted );
+    }
+    else if (CurrentGame[converted] == 1) {
+        //clicked on a red piece, highlight if first click
+        var cell = gameboard.rows[row].cells[col];
+        cell.className="redPCclicked";
+        PieceHighlighted = 1;
+        GameHistory(row, col);
+        }
+    else if (CurrentGame[converted] == 2) {
+        //clicked on a white piece, highlight if first click
+        var cell = gameboard.rows[row].cells[col];
+        cell.className="whitePCclicked";
+        PieceHighlighted = 1;
+        GameHistory(row, col);
+    }
+    else if (CurrentGame[converted] == 3) {
+        //clicked on a white piece, highlight if first click
+        var cell = gameboard.rows[row].cells[col];
+        cell.className="redPCKingclicked";
+        PieceHighlighted = 1;
+        GameHistory(row, col);
+    }
+    else if (CurrentGame[converted] == 4) {
+        //clicked on a white piece, highlight if first click
+        var cell = gameboard.rows[row].cells[col];
+        cell.className="whitePCKingclicked";
+        PieceHighlighted = 1;
+        GameHistory(row, col);
+    }
+     
+}
+
+function GameHistory(row, col){
+    var paragraph = document.getElementById("gameHistory");
+    paragraph.innerHTML="Selected = row: " + row + " col: " + col;
+}
+
+var Title = document.getElementById("TitleDiv");
+var value = 10;
+var colorSelect = 0;
+function AnimateTitle(){
+    var interval = setInterval(moveTitle, 150);
+    setTimeout(function(){ clearInterval(interval); }, 10000);
+    
+}
+
+function moveTitle(){
+        value += 5;
+        Title.style.left = value + "px";
+        if (colorSelect == 0) {
+            Title.style.color = "red";
+            colorSelect++;
+        }
+        else
+        {
+            Title.style.color = "black";
+            Title.style.left = (value-20) + "px";
+            colorSelect--;
+        }
+    }
+
+function outNumbered(){
+    alert("outnumbered");
+}

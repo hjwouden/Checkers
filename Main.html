@@ -6,13 +6,30 @@
         </head>
         
        <body>
-            <h1>Checkers</h1>
+            <div id="TitleDiv">
+                <h1 id="GameTitle">Checkers</h1>
+            </div>
+            
             <div>
                 <button type="button" onclick="newGame();">New Game</button>
+                <select id="gameType">
+                    <option value="0">Normal</option>
+                    <option value="1">Out Numbered</option>
+                    <option value="2">Kings Battle!</option>
+                </select>
+                <input type= "text" value="Human">
                 <a href = "index.html" target="_blank">How to play Checkers</a>
             </div>
+           
+           <div id="infoDiv">Game History: <br>
+            <p id= "gameHistory">Click a Checker to begin!
+                or Click New Game to Start, or Select a game variation,
+                Enter your name to personalize!</p>
+           </div>
+           
            <script src="board1.js"></script>
            <script src="model.js"></script>
+           <a href = "checkpoint.html" target="_blank">Link to Game Logic Progress</a>
            
         </body>
     </html>

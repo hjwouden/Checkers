@@ -1,3 +1,6 @@
+//Javascript creates table elements and draws original game elements, updated by model.js
+//
+
 var BLACKorWHITE = 1;
     
 var SqNum = 0;
@@ -82,3 +85,10 @@ var SqNum = 0;
         body.appendChild(tbl)
     }
 document.createElement = tableCreate(8,8);
+
+
+
+
+
+
+
