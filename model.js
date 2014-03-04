@@ -123,6 +123,7 @@ function newGame(){
         drawCurrentGameBoard(KingsBattleBoard);
         CurrentGame = KingsBattleBoard;
     }//end if TypeVal == 2 kings battle
+    GameHistoryDebug();
 }
 
 function UpdateMove(){
@@ -242,7 +243,14 @@ function squareClicked(row, col){
     }
      
 }
-
+function GameHistoryDebug(){
+    var debuginfo = document.getElementById("gameHistory");
+    var Selector = document.getElementById("gameType");
+    var SelectVal = Selector.options[Selector.selectedIndex].value;
+    var NameVal = document.getElementById("name").value;
+    debuginfo.innerHTML="Game Val: " + SelectVal + "  Name: " + NameVal;
+    //debuginfo.innerHTML= "Test";
+}
 function GameHistory(row, col){
     var paragraph = document.getElementById("gameHistory");
     paragraph.innerHTML="Selected = row: " + row + " col: " + col;
@@ -271,7 +279,3 @@ function moveTitle(){
             colorSelect--;
         }
     }
-
-function outNumbered(){
-    alert("outnumbered");
-}
