@@ -6,6 +6,8 @@
         </head>
         
         <body>
+            <script src="login.js"></script>
+            
             <div class = "header">
                 <h1>How to Play Checkers</h1>
             </div>
@@ -15,6 +17,17 @@
                
                 <img id="wood" src="woodBoard.jpg" alt="Wood Checker Board" >
                 
+            
+            <div id="login">
+                <h2>Login Here</h2>
+                User Name: <input id="usrname" type="text" name="userName" value="">
+                Password: <input id="pwd" type="password" name="pwd" value="">
+                <button id= "loginButton" type="button" onclick="login()">Login</button>
+                <p id="loginStatus"></p>
+                    
+                
+            </div>
+            
             <h2>How to Play</h2>
                 <ul>
                     <li>Select if playing 1 player or 2 players.</li>

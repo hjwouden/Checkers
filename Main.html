@@ -27,9 +27,34 @@
                 Enter your name to personalize!</p>
            </div>
            
+           
+           
            <script src="board1.js"></script>
            <script src="model.js"></script>
            <a href = "checkpoint.html" target="_blank">Link to Game Logic Progress</a>
+           
+           <div>
+            <p id="loggedAS">Log in on the description page!</p>
+            <button type="button" onclick="clearStorage()";>Clear Login</button>
+           </div>
+           
+           <script>
+            getLogged();
+            
+            function getLogged() {
+             if (localStorage.getItem("cs2550timestamp") == "") {
+                //do nothing
+             }
+             else{
+                 document.getElementById("loggedAS").innerHTML = localStorage.getItem("cs2550timestamp"); 
+             }
+            }
+            
+           function clearStorage(){
+               localStorage.setItem("cs2550timestamp", "");
+              document.getElementById("loggedAS").innerHTML = "Log in on the description page!";
+            } 
+           </script>
            
         </body>
     </html>
